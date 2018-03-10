@@ -23,6 +23,7 @@ func main() {
 		log.Printf("bind tcp ,port=%d ,error, %s\n", *port, err.Error())
 		os.Exit(1)
 	}
+	log.Printf("bind success on port %d", *port)
 	for {
 		conn, err := l.Accept()
 		if err != nil {
