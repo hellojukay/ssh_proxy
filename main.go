@@ -13,7 +13,7 @@ var port *int
 var ssh *string
 
 func init() {
-	ssh = flag.String("ssh", "huanggai:7122", "-ssh ssh port")
+	ssh = flag.String("ssh", "", "-ssh ssh port")
 	port = flag.Int("port", 7000, "-port target ssh port")
 	flag.Parse()
 }
