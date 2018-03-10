@@ -15,7 +15,7 @@ var ssh *int
 func init() {
 	ssh = flag.Int("ssh", 22, "-ssh ssh port")
 	port = flag.Int("port", 7000, "-port target ssh port")
-	flag.Parsed()
+	flag.Parse()
 }
 func main() {
 	l, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%d", *port))
