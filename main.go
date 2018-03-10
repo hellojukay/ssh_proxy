@@ -10,10 +10,10 @@ import (
 )
 
 var port *int
-var ssh *int
+var ssh *string
 
 func init() {
-	ssh = flag.Int("ssh", 22, "-ssh ssh port")
+	ssh = flag.String("ssh", "huanggai:7122", "-ssh ssh port")
 	port = flag.Int("port", 7000, "-port target ssh port")
 	flag.Parse()
 }
@@ -32,7 +32,7 @@ func main() {
 		}
 		sshCon, err := getSSHConection()
 		if err != nil {
-			log.Printf("can not connect to ssh , port=%d, error=%s", *ssh, err.Error())
+			log.Printf("can not connect to ssh = %s, error=%s", *ssh, err.Error())
 			continue
 		}
 		go io.Copy(conn, sshCon)
@@ -41,5 +41,5 @@ func main() {
 }
 
 func getSSHConection() (net.Conn, error) {
-	return net.Dial("tcp", fmt.Sprintf("127.0.0.1:%d", ssh))
+	return net.Dial("tcp", *ssh)
 }
