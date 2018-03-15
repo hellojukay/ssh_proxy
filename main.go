@@ -7,8 +7,6 @@ import (
 	"log"
 	"net"
 	"os"
-	"os/signal"
-	"syscall"
 )
 
 var port *int
@@ -20,17 +18,6 @@ func init() {
 	flag.Parse()
 }
 func main() {
-	signal_chan := make(chan os.Signal, 1)
-
-	signal.Notify(signal_chan,
-		syscall.SIGINT,
-		syscall.SIGTERM,
-		syscall.SIGQUIT)
-	go func() {
-		s := <-signal_chan
-		fmt.Println(s.String())
-		os.Exit(1)
-	}()
 	l, err := net.Listen("tcp", fmt.Sprintf("0.0.0.0:%d", *port))
 	if err != nil {
 		log.Printf("bind tcp ,port=%d ,error, %s\n", *port, err.Error())
