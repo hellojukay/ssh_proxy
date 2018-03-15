@@ -23,7 +23,6 @@ func main() {
 	signal_chan := make(chan os.Signal, 1)
 
 	signal.Notify(signal_chan,
-		syscall.SIGHUP,
 		syscall.SIGINT,
 		syscall.SIGTERM,
 		syscall.SIGQUIT)
