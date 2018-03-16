@@ -36,23 +36,8 @@ func main() {
 			continue
 		}
 		go func() {
-			defer func() {
-				recover()
-			}()
-			_, err := io.Copy(conn, sshCon)
-			if err != nil {
-				println(err)
-				sshCon.Close()
-				conn.Close()
-				return
-			}
-			_, err = io.Copy(sshCon, conn)
-			if err != nil {
-				println(err)
-				sshCon.Close()
-				conn.Close()
-				return
-			}
+			io.Copy(conn, sshCon)
+			io.Copy(sshCon, conn)
 		}()
 	}
 }
