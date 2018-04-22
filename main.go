@@ -37,6 +37,8 @@ func main() {
 		}
 		go func() {
 			io.Copy(conn, sshCon)
+		}()
+		go func() {
 			io.Copy(sshCon, conn)
 		}()
 	}
