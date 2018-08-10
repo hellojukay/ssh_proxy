@@ -13,8 +13,8 @@ var port *int
 var ssh *string
 
 func init() {
-	ssh = flag.String("ssh", "", "-ssh ssh port")
-	port = flag.Int("port", 7000, "-port target ssh port")
+	ssh = flag.String("target", "", "-target target server and port: 23.65.123.3:90")
+	port = flag.Int("listen", 7000, "-listen listen a local port")
 	flag.Parse()
 }
 func main() {
@@ -32,7 +32,7 @@ func main() {
 		}
 		sshCon, err := getSSHConection()
 		if err != nil {
-			log.Printf("can not connect to ssh = %s, error=%s", *ssh, err.Error())
+			log.Printf("can not connect to target,target = %s, error=%s", *ssh, err.Error())
 			continue
 		}
 		go func() {

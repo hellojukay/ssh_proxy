@@ -2,11 +2,7 @@
 
 # Usage
 ```shell
-go build ssh_proxy 
-// 在一个开放7013(或者其他端口)的端口机器上执行
-./ssh_proxy -ssh="server:port"  -port=7013
-```
-本机登录ssh, 免密码登录同理
-```shell
-ssh -p 7013 user@targethost
+make build
+// 将本地7013的流量代理到hellojukay.cn:8080
+./tcp_proxy --listen=7013 --target=hellojukay.cn:8080
 ```
